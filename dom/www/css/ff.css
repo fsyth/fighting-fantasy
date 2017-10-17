@@ -1,0 +1,494 @@
+@font-face {
+  font-family: 'Aref Ruqaa';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Aref Ruqaa'), local('ArefRuqaa-Regular'), url(../fonts/aref.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+body {
+  background: #EED;
+  font-family: 'Aref Ruqaa', serif;
+  font-size: 12pt;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  cursor: default;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+   -khtml-user-select: none;
+     -moz-user-select: none;
+    -ms-user-select: none;
+      user-select: none;
+}
+
+#wrapper {
+  width: 860px;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 60px;
+  line-height: 60px;
+}
+
+table td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  column-width: 286px;
+}
+
+table td:first-child {
+  background-color: #FEB;
+  box-shadow: 0px 1px 2px -1px #777;
+}
+
+table td:last-child {
+  background-color: #FEB;
+  box-shadow: 0px 1px 2px -1px #777;
+}
+
+#fight.hero-critical table td:first-child,
+#fight.enemy-critical table td:last-child {
+  animation: critical 0.5s linear 0s infinite alternate;
+}
+
+@keyframes critical {
+  from {
+    background-color: #FAA;
+  }
+
+  to {
+    background-color: #F77;
+  }
+}
+
+#fight.hero-dead table td:first-child,
+#fight.enemy-dead table td:last-child {
+  background-color: #777;
+}
+
+td[contenteditable=true] {
+  cursor: text;
+  font-size: 60px;
+}
+
+#fight img {
+  vertical-align: middle;
+}
+
+img.stat-icon {
+  width: 60px;
+}
+
+#fight input {
+  display: inline-block;
+  font-size: 50px;
+  width: 70px;
+  height: 70px;
+  vertical-align: middle;
+  text-align: center;
+  border: none;
+  background: #FFF;
+  font-family: inherit;
+  border-radius: 2px;
+  cursor: text;
+}
+
+hr {
+  margin: 15px 0 0 0;
+}
+
+#fight span {
+  transition: color 0.2s, background-color 0.2s;
+}
+
+#fight table td {
+  height: 100px;
+  width: 33%;
+  overflow: visible;
+}
+
+#fight table tr {
+  height: 100px;
+}
+
+#fight table td[contenteditable=true] {
+
+}
+
+.die {
+  display: inline-block;
+  margin: auto;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 80px;
+  width: 100px;
+  height: 100px;
+  line-height: 80px;
+  border-radius: 12%;
+  transition: background-color 800ms;
+}
+
+#hero-roll, #hero-roll-2, #hero-skill-die {
+  background-color: #1AC;
+}
+
+#enemy-roll, #enemy-roll-2, #enemy-skill-die {
+  background-color: #C19;
+}
+
+#hero-total, #enemy-total {
+  background-color: #777;
+  border-radius: 50%;
+  margin-right: 60px;
+}
+
+#fight.win #hero-total, #fight.lose #enemy-total {
+  background-color: #0C3;
+}
+
+#fight.lose #hero-total, #fight.win #enemy-total {
+  background-color: #B22;
+}
+
+#fight.draw #hero-total, #fight.draw #enemy-total {
+  background-color: #FA0;
+}
+
+.sym {
+  float: left;
+  display: inline-block;
+  height: 100px;
+  margin-bottom: 20px;
+  vertical-align: middle;
+  font-size: 100px;
+}
+
+img.unit {
+  display: inline;
+  vertical-align: top;
+  width: 50px;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+hr {
+  border: 1px solid #666;
+  margin: 13px 0 29px 0;
+}
+
+#win-lose {
+  text-align: left;
+  font-size: 100px;
+  width: auto;
+}
+
+#win-lose.small {
+  font-size: 80px;
+}
+
+#luck-button {
+  font-size: 36px;
+  line-height: 32px;
+  height: 70px;
+}
+
+.button {
+  font-size: 60px;
+  line-height: 60px;
+  cursor: pointer;
+  background-color: #FA0;
+  width: 60%;
+  height: 80px;
+  margin: 6px auto;
+  padding: 5px;
+  border-radius: 10px;
+  vertical-align: middle;
+  transition: background-color 0.4s, color 0.4s;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  box-shadow: 0px 1px 2px -1px #777;
+}
+
+.button:hover {
+  background-color: #FC0;
+}
+
+.button.disabled {
+  background-color: #666 !important;
+  cursor: default;
+}
+
+.button.critical {
+  animation: luck-critical 0.5s linear 0s infinite alternate;
+}
+
+@keyframes luck-critical {
+  from {
+    background-color: #FA0;
+  }
+
+  to {
+    background-color: #FF0;
+  }
+}
+
+img.edit-icon {
+  display: block;
+  position: absolute;
+  margin-top: 40px;
+  opacity: 0.5;
+  width: 32px;
+}
+
+#damage {
+  opacity: 0;
+  display: inline-block;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #C13;
+  z-index: 30;
+  margin-left: -50px;
+  margin-top: -45px;
+  font-size: 70px;
+  line-height: 80px;
+}
+
+#damage.damage {
+  background-color: #C13;
+}
+
+#damage.heal {
+  background-color: #1C3;
+}
+
+#damage.damage-hero, #damage.damage-enemy {
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+#damage.damage-hero {
+  animation-name: slide-left-fade;
+}
+
+#damage.damage-enemy {
+  animation-name: slide-right-fade;
+}
+
+@keyframes slide-left-fade {
+  0% {
+    margin-left: -50px;
+    opacity: 1;
+  }
+
+  80% {
+    margin-left: -250px;
+    opacity: 1;
+  }
+
+  99% {
+    margin-left: -250px;
+    opacity: 0;
+  }
+
+  100% {
+    margin-left: -50px;
+    opacity: 0;
+  }
+}
+
+@keyframes slide-right-fade {
+  0% {
+    margin-left: -50px;
+    opacity: 1;
+  }
+
+  80% {
+    margin-left: 150px;
+    opacity: 1;
+  }
+
+  99% {
+    margin-left: 150px;
+    opacity: 0;
+  }
+
+  100% {
+    margin-left: -50px;
+    opacity: 0;
+  }
+}
+
+#damage.critical {
+  animation: critical-slide 0.5s ease 0s infinite alternate;
+  opacity: 1;
+}
+
+@keyframes critical-slide {
+  0% {
+    margin-left: -50px;
+    opacity: 1;
+  }
+
+  100% {
+    margin-left: -200px;
+    opacity: 1;
+  }
+}
+
+#dialogue-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+}
+
+#outcome-dialogue {
+  position: absolute;
+  width: 100%;
+  top: -490px;
+  margin: 0 auto -540px auto;
+  background-color: rgba(51, 51, 51, 0.9);
+  color: #FFF;
+  font-size: 205%;
+  box-shadow: 0 1px 3px 2px #222;
+  cursor: pointer;
+}
+
+#outcome-dialogue h1 {
+  margin-top: 0;
+}
+
+#outcome-dialogue p {
+  margin-top: 60px;
+  font-size: 90%;
+}
+
+#critical-dialogue {
+  position: absolute;
+  width: 100%;
+  top: -255px;
+  margin-bottom: -255px;
+  background-color: rgba(51, 51, 51, 0.9);
+  color: #FFF;
+  font-size: 150%;
+  box-shadow: 0 1px 3px 2px #222;
+}
+
+#critical-dialogue * {
+  margin: 5px;
+}
+
+.key {
+  display: inline-block;
+  background-color: #777;
+  color: #FFF;
+  width: 34px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 2px #222;
+}
+
+#help {
+  font-size: 32px;
+  line-height: 50px;
+  position: absolute;
+  width: 286px;
+  margin-top: -70px;
+}
+
+#help-luck-win, #help-luck-lose {
+  font-size: 24px;
+  line-height: 26px;
+  position: absolute;
+  width: 286px;
+  margin-top: -70px;
+}
+
+#help-luck-win p, #help-luck-lose p {
+  margin: 15px 0;
+}
+
+#help-show.button {
+  font-size: 20px;
+  width: auto;
+  height: auto;
+  position: absolute;
+  display: inline-block;
+  background-color: #FEC;
+  color: #BBB;
+}
+
+#help-show.button:hover {
+  background-color: #FC0;
+  color: #000;
+}
+
+#luck-dice .die, #luck-comparison .die {
+  height: 70px;
+  width: 70px;
+  background-color: #FA0;
+  opacity: 1;
+  font-size: 60px;
+  line-height: 60px;
+}
+
+#luck-dice .unit, #luck-comparison .unit {
+  width: 32px;
+}
+
+#luck-dice .sym, #luck-comparison .sym {
+  float: none;
+  font-size: 50px;
+  height: 50px;
+  line-height: 50px;
+}
+
+#luck-total {
+  border-radius: 50%;
+}
+
+#luck-comparison.lucky .die {
+  background-color: #0C3;
+}
+
+#luck-comparison.lucky #luck-inequality {
+  color: #0C3;
+}
+
+#luck-comparison.unlucky .die {
+  background-color: #B22;
+}
+
+#luck-comparison.unlucky #luck-inequality {
+  color: #B22;
+}
+
+.calc {
+  opacity: 0;
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
+  color: #AAA;
+  cursor: pointer;
+  transition: color 0.4s;
+}
+
+.close:hover {
+  color: #FFF;
+}

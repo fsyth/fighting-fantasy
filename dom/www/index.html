@@ -1,0 +1,193 @@
+<!doctype html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta lang="en">
+  <title>Fighting Fantasy Combat Simulator</title>
+  <link rel="stylesheet" href="css/ff.css">
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="fight" class="hero-dead enemy-dead">
+      <table>
+        <tbody>
+          <tr>
+            <td contenteditable="true">
+              <!--img class="edit-icon" src="editable.png"-->
+              Hero
+            </td>
+            <td>vs</td>
+            <td contenteditable="true">
+              <!--img class="edit-icon" src="editable.png"-->
+              Enemy
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!--Hero Stats-->
+              <img class="stat-icon" src="images/skill.png">
+              <input type="number" min="0" max="99" step="1" title="Skill" id="hero-skill" value="0">
+              <br>
+              <img class="stat-icon" src="images/stam.png">
+              <input type="number" min="0" max="99" step="1" title="Stamina" id="hero-stam" value="0">
+              <br>
+              <img class="stat-icon" src="images/luck.png">
+              <input type="number" min="1" max="99" step="1" title="Luck" id="hero-luck" value="1">
+              <br><br>
+            </td>
+            <td>
+              <!--Tutorial - disappears once stamina is changed-->
+              <div id="help">
+                <p>Fill in the boxes,<br>then click <b>Fight!</b></p>
+                <p>You can also rename the characters.</p>
+              </div>
+              <!--Tutorial - rolling for luck when you've just hit the enemy-->
+              <div id="help-luck-win" class="hidden">
+                <p>You can optionally <b>roll luck</b> to <b>increase damage</b> dealt.</p>
+                <p>Roll two dice equal to your luck or under to deal <br><b>double damage</b>.</p>
+                <p>Fail and deal only <br><b>half damage</b> instead.</p>
+                <p>You will <b>lose one luck</b> point.</p>
+              </div>
+              <!--Tutorial - rolling for luck when you've just been hit-->
+              <div id="help-luck-lose" class="hidden">
+                <p>You can optionally <b>roll luck</b> to <b>reduce damage</b> taken.</p>
+                <p>Roll two dice equal to your luck or under to <b>reduce damage taken by 1</b>.</p>
+                <p>Fail and <b>take 1 extra damage</b> instead.</p>
+                <p>You will <b>lose one luck</b> point.</p>
+              </div>
+              <!--Damage-->
+              <br>
+              <div id="damage">-2</div>
+              <br><br>
+              <!--Button to show tutorials. By default they are only shown once-->
+              <!--div id="help-show" class="button">
+                How does luck work again?
+              </div-->
+            </td>
+            <td>
+              <!--Enemy Stats-->
+              <img class="stat-icon" src="images/skill.png">
+              <input type="number" min="0" max="99" step="1" title="Skill" id="enemy-skill" value="0">
+              <br>
+              <img class="stat-icon" src="images/stam.png">
+              <input type="number" min="0" max="99" step="1" title="Stamina" id="enemy-stam" value="0">
+              <br>
+              <img class="invisible stat-icon">
+              <input class="invisible" type="number" disabled>
+              <br><br>
+            </td>
+          </tr>
+          <tr>
+            <td class="calc">
+              <!--Hero Skill Die-->
+              <span class="invisible sym">+</span>
+              <div class="die" id="hero-skill-die">0</div>
+              <img class="unit" src="images/sword.png">
+            </td>
+            <td>
+              <!--Fight Button-->
+              <div id='fight-button' class="disabled button">Fight!</div>
+
+            </td>
+            <td class="calc">
+              <!--Enemy Skill Die-->
+              <span class="invisible sym">+</span>
+              <div class="die" id="enemy-skill-die">0</div>
+              <img class="unit" src="images/sword.png">
+            </td>
+          </tr>
+          <tr class="calc">
+            <td>
+              <!--Hero Die Roll-->
+              <span class="sym">+</span>
+              <div class="rollable die" id="hero-roll"></div>
+              <img class="unit" src="images/dice.png">
+            </td>
+            <td>
+              <!--Luck Button-->
+              <div id='luck-button' class="disabled button">
+                Roll Luck
+                <br>
+                (<span id="luck-percentage">0</span>%)
+              </div>
+              <!--Luck dice-->
+              <div id="luck-dice" class="hidden">
+                <div class="die" id="luck-roll-1"></div>
+                <img class="unit" src="images/dice.png">
+                <span class="sym">+</span>
+                <div class="die" id="luck-roll-2"></div>
+                <img class="unit" src="images/dice.png">
+              </div>
+            </td>
+            <td>
+              <!--Enemy Die Roll-->
+              <span class="sym">+</span>
+              <div class="rollable die" id="enemy-roll"></div>
+              <img class="unit" src="images/dice.png">
+            </td>
+          </tr>
+          <tr class="calc">
+            <td>
+              <!--Hero Die Roll 2-->
+              <span class="sym">+</span>
+              <div class="rollable die" id="hero-roll-2"></div>
+              <img class="unit" src="images/dice.png">
+            </td>
+            <td>
+              <!--Luck roll total and comparison-->
+              <div id="luck-comparison" class="hidden">
+                <span class="sym">=</span>
+                <div class="die" id="luck-total"></div>
+                <span class="sym" id="luck-inequality"></span>
+                <div class="die" id="hero-luck-die"></div>
+                <img class="unit" src="images/horseshoe.png">
+              </div>
+            </td>
+            <td>
+              <!--Enemy Die Roll 2-->
+              <span class="sym">+</span>
+              <div class="rollable die" id="enemy-roll-2"></div>
+              <img class="unit" src="images/dice.png">
+            </td>
+          </tr>
+          <tr class="calc">
+            <td>
+              <!--Hero Total-->
+              <span class="sym">=</span>
+              <div class="rollable die" id="hero-total"></div>
+            </td>
+            <td>
+              <!--Win Lose Draw-->
+              <div class="rollable die" id="win-lose"></div>
+            </td>
+            <td>
+              <!--Enemy Total-->
+              <span class="sym">=</span>
+              <div class="rollable die" id="enemy-total"></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="dialogue-wrapper">
+    <div id="outcome-dialogue" class="hidden">
+      <span class="close">&times;</span>
+      <h1>Result</h1>
+      <p>Press <span class="key">F</span> to pay respects</p>
+    </div>
+    <div id="critical-dialogue" class="hidden">
+      <h1>It's exactly lethal!</h1>
+      <p>Roll luck to reduce the damage and survive</p>
+    </div>
+  </div>
+  <!--JQuery from local copy for offline version-->
+  <script src="js/jq.min.js"></script>
+  <!--Fighting Fantasy logic-->
+  <script src="js/ff.js"></script>
+</body>
+
+</html>
