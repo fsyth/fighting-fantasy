@@ -492,3 +492,28 @@ img.edit-icon {
 .close:hover {
   color: #FFF;
 }
+
+#settings-button {
+  position: absolute;
+  right: 20px;
+  font-size: 150%;
+  transition: color 0.5s;
+  cursor: pointer;
+  color: #999;
+  z-index: 30;
+}
+
+#settings-button:hover {
+  color: #C13;
+}
+
+#settings-panel {
+  position: absolute;
+  width: 100%;
+  min-height: 500px;
+  padding: 25px;
+  z-index: 20;
+  background-color: rgba(51, 51, 51, 0.9);
+  color: #FFF;
+  font-size: 150%;
+}

@@ -512,4 +512,19 @@ $(function () {
   });
 
   $('#outcome-dialogue').click(reset);
+
+  $('#settings-button').click(function () {
+    if ($('#settings-panel').hasClass('hidden')) {
+      $('#settings-panel').removeClass('hidden');
+      $('#settings-button').html('&times;');
+    } else {
+      $('#settings-panel').addClass('hidden');
+      $('#settings-button').html('&bull;&bull;&bull;');
+    }
+  });
+
+  $('#animation-duration-input').change(function () {
+    t = parseInt($(this).val());
+    $('#animation-duration').text(t);
+  });
 });
