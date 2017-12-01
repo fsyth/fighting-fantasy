@@ -21,7 +21,8 @@ $(function () {
       won = false,
       calcHidden = true,
       helpLuckWinShown = false,
-      helpLuckLoseShown = false;
+      helpLuckLoseShown = false,
+      history = 'TURN HISTORY';
 
   $('#hero-skill, #enemy-skill').change(function () {
         // Parse the new skill value
@@ -101,7 +102,13 @@ $(function () {
   function dealDamage(target, damage) {
     // Parse current stamina
     var heroStam  = parseInt($('#hero-stam').val())  || 0,
-        enemyStam = parseInt($('#enemy-stam').val()) || 0;
+        enemyStam = parseInt($('#enemy-stam').val()) || 0,
+        targetStam = target === 'hero' ? heroStam : enemyStam;
+
+    // Update history
+    history += '\n' + target.toUpperCase() + ': ' +
+               targetStam + ' -> ' + Math.max(targetStam - damage, 0);
+    $('img[src="images/stam.png"]').attr('title', history);
 
     // Play damaging animation towards target
     $('#damage').addClass('damage-' + target);
@@ -486,6 +493,9 @@ $(function () {
     // Hide the calculation dice
     $('.calc').fadeTo(t, 0);
     calcHidden = true;
+
+    // Reset turn history
+    history = 'TURN HISTORY';
   }
 
   $('body').keypress(function (e) {
@@ -512,4 +522,25 @@ $(function () {
   });
 
   $('#outcome-dialogue').click(reset);
+
+  $('#settings-button').click(function () {
+    if ($('#settings-panel').hasClass('hidden')) {
+      $('#settings-panel').removeClass('hidden');
+      $('#settings-button').html('&times;');
+    } else {
+      $('#settings-panel').addClass('hidden');
+      $('#settings-button').html('&bull;&bull;&bull;');
+    }
+  });
+
+  $('#animation-duration-input').change(function () {
+    t = parseInt($(this).val());
+    $('#animation-duration').text(t);
+  });
+
+  $('#background-color-input').change(function () {
+    $('body').css({
+      backgroundColor: $(this).val()
+    });
+  });
 });

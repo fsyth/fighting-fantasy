@@ -10,6 +10,16 @@
 </head>
 
 <body>
+  <div id="settings-button">&bull;&bull;&bull;</div>
+  <div id="settings-panel" class="hidden">
+    <label>Animation duration: <span id="animation-duration">400</span> ms</label>
+    <br>
+    <input id="animation-duration-input" type="range" min="0" max="1000" value="400" step="5">
+    <br>
+    <label>Background color</label>
+    <br>
+    <input id="background-color-input" type="color" value="#EEEEDD">
+  </div>
   <div id="wrapper">
     <div id="fight" class="hero-dead enemy-dead">
       <table>
