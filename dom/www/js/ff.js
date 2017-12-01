@@ -537,4 +537,10 @@ $(function () {
     t = parseInt($(this).val());
     $('#animation-duration').text(t);
   });
+
+  $('#background-color-input').change(function () {
+    $('body').css({
+      backgroundColor: $(this).val()
+    });
+  });
 });
