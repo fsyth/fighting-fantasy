@@ -536,6 +536,10 @@ $(function () {
   $('#animation-duration-input').change(function () {
     t = parseInt($(this).val());
     $('#animation-duration').text(t);
+    $('#damage').css({
+      animationDuration: t + 'ms'
+    });
+    outcomeDelay = 1.5 * t;
   });
 
   $('#background-color-input').change(function () {
