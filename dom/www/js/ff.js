@@ -139,6 +139,9 @@ $(function () {
           $(this).removeClass('hidden');
         });
 
+        // Disable number inputs while the outcome dialogue is shown
+        $('input[type="number"]').attr('readonly', true);
+
         // Apply styles for dead target
         $('#fight').removeClass(target + '-critical').addClass(target + '-dead');
       } else {
@@ -481,6 +484,9 @@ $(function () {
   function reset() {
     // Hide the outcome dialogue when F is pressed
     $('#outcome-dialogue').fadeOut(t).addClass('hidden');
+
+    // Re-enable number inputs
+    $('input[type="number"]').attr('readonly', false);
 
     // Show the help text once faded
     setTimeout(function () {
