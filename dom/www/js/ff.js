@@ -537,7 +537,7 @@ $(function () {
     t = parseInt($(this).val());
     $('#animation-duration').text(t);
     $('#damage').css({
-      animationDuration: t + 'ms'
+      animationDuration: (1.5 * t | 0) + 'ms'
     });
     outcomeDelay = 1.5 * t;
   });
