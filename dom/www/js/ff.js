@@ -339,6 +339,16 @@ $(function () {
     }, t);
   });
 
+  $('#help-luck-win-hide').click(function () {
+    helpLuckWinShown = true;
+    $('#help-luck-win').fadeOut(t);
+  });
+
+  $('#help-luck-lose-hide').click(function () {
+    helpLuckLoseShown = true;
+    $('#help-luck-lose').fadeOut(t);
+  });
+
   $('#luck-button').click(function () {
     // Return if the button is disabled
     if ($(this).hasClass('disabled')) {

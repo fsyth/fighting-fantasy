@@ -420,6 +420,16 @@ img.edit-icon {
   margin: 15px 0;
 }
 
+#help-luck-win-hide, #help-luck-lose-hide {
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.5s;
+}
+
+#help-luck-win-hide:hover, #help-luck-lose-hide:hover {
+  color: #C13;
+}
+
 #help-show.button {
   font-size: 20px;
   width: auto;
